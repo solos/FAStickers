@@ -13,7 +13,7 @@ extension UIImageView {
     
     public func loadGif(name: String) {
         DispatchQueue.global().async {
-            let image = UIImage.gif(name: name)
+            let image = UIImage.gifI(name: name)
             DispatchQueue.main.async {
                 self.image = image
             }
@@ -23,7 +23,7 @@ extension UIImageView {
     @available(iOS 9.0, *)
     public func loadGif(asset: String) {
         DispatchQueue.global().async {
-            let image = UIImage.gif(asset: asset)
+            let image = UIImage.gifI(asset: asset)
             DispatchQueue.main.async {
                 self.image = image
             }
@@ -34,7 +34,7 @@ extension UIImageView {
 
 extension UIImage {
     
-    public class func gif(data: Data) -> UIImage? {
+    public class func gifI(data: Data) -> UIImage? {
         // Create source from data
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
             print("SwiftGif: Source for the image does not exist")
@@ -44,7 +44,7 @@ extension UIImage {
         return UIImage.animatedImageWithSource(source)
     }
     
-    public class func gif(url: String) -> UIImage? {
+    public class func gifI(url: String) -> UIImage? {
         // Validate URL
         guard let bundleURL = URL(string: url) else {
             print("SwiftGif: This image named \"\(url)\" does not exist")
@@ -57,10 +57,10 @@ extension UIImage {
             return nil
         }
         
-        return gif(data: imageData)
+        return gifI(data: imageData)
     }
     
-    public class func gif(name: String) -> UIImage? {
+    public class func gifI(name: String) -> UIImage? {
         // Check for existance of gif
         guard let bundleURL = Bundle.main
             .url(forResource: name, withExtension: "gif") else {
@@ -74,18 +74,18 @@ extension UIImage {
             return nil
         }
         
-        return gif(data: imageData)
+        return gifI(data: imageData)
     }
     
     @available(iOS 9.0, *)
-    public class func gif(asset: String) -> UIImage? {
+    public class func gifI(asset: String) -> UIImage? {
         // Create source from assets catalog
         guard let dataAsset = NSDataAsset(name: asset) else {
             print("SwiftGif: Cannot turn image named \"\(asset)\" into NSDataAsset")
             return nil
         }
         
-        return gif(data: dataAsset.data)
+        return gifI(data: dataAsset.data)
     }
     
     internal class func delayForImageAtIndex(_ index: Int, source: CGImageSource!) -> Double {
