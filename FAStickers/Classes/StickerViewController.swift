@@ -115,12 +115,13 @@ public class StickerViewController: UIViewController, UIGestureRecognizerDelegat
         let frame = CGRect(x: 0,
                            y: 0,
                            width: UIScreen.main.bounds.width,
-                           height: view.frame.height - 40)
+                           height: view.frame.height)
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        let width = (CGFloat) ((screenSize.width - 30) / 3.0)
-        layout.itemSize = CGSize(width: width, height: 100)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 100, right: 10)
+        let width = (CGFloat) ((screenSize.width - 30) / 10.0)
+        let itemSize = CGSize(width: width, height: width)
+        layout.itemSize = CGSize(width: width, height: width)
         
         stickerCollectioView = UICollectionView(frame: frame, collectionViewLayout: layout)
         stickerCollectioView.backgroundColor = .clear
@@ -137,11 +138,11 @@ public class StickerViewController: UIViewController, UIGestureRecognizerDelegat
         let emojisFrame = CGRect(x: scrollView.frame.size.width,
                                  y: 0,
                                  width: UIScreen.main.bounds.width,
-                                 height: view.frame.height - 40)
+                                 height: view.frame.height)
         
         let emojislayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        emojislayout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        emojislayout.itemSize = CGSize(width: 60, height: 60)
+        emojislayout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 100, right: 10)
+        emojislayout.itemSize = CGSize.init(width: 40, height: 40)
         
         emojisCollectioView = UICollectionView(frame: emojisFrame, collectionViewLayout: emojislayout)
         emojisCollectioView.backgroundColor = .clear
@@ -156,14 +157,15 @@ public class StickerViewController: UIViewController, UIGestureRecognizerDelegat
         
         //-----------------------------------
         
+
         let gifFrame = CGRect(x: scrollView.frame.size.width * 2,
                               y: 0,
                               width: UIScreen.main.bounds.width,
-                              height: view.frame.height - 40)
+                              height: view.frame.height)
         
         let giflayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        giflayout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        giflayout.itemSize = CGSize(width: 100, height: 100)
+        giflayout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 100, right: 10)
+        giflayout.itemSize = itemSize
         
         gitCollectioView = UICollectionView(frame: gifFrame, collectionViewLayout: giflayout)
         gitCollectioView.backgroundColor = .clear
@@ -172,14 +174,13 @@ public class StickerViewController: UIViewController, UIGestureRecognizerDelegat
         gitCollectioView.dataSource = self
         
         gitCollectioView?.register(GifCell.self, forCellWithReuseIdentifier: "cell")
-        
-        
+
         
         
     }
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        prepareBackgroundView()
+        //prepareBackgroundView()
     }
     
     override open func viewDidAppear(_ animated: Bool) {

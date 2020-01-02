@@ -16,7 +16,7 @@ class EmojiCell: UICollectionViewCell {
         super.init(frame: frame)
         
         self.emojiLabel.sizeToFit()
-        self.emojiLabel.font = emojiLabel.font.withSize(50)
+        self.emojiLabel.font = emojiLabel.font.withSize(35)
         self.emojiLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.emojiLabel)
         

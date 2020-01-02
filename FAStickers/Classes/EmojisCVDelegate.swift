@@ -13,14 +13,13 @@ class EmojisCVDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDe
     var EmojiDelegate : StickerEmojiDelegate!
     
     
-    
     let emojiRanges = [
         0x1F601...0x1F64F,
         0x1F30D...0x1F567,
         0x1F680...0x1F6C0,
         0x1F681...0x1F6C5
     ]
-    
+
     var emojis: [String] = []
     
     override init() {
@@ -47,14 +46,19 @@ class EmojisCVDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDe
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! EmojiCell
-        cell.emojiLabel.text = emojis[indexPath.row]
+        cell.emojiLabel.text = emojis[indexPath.item]
         return cell
     }
     
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        EmojiDelegate.EmojiTapped(EmojiName: emojis[indexPath.row])
-        print(emojis[indexPath.row])
+        print(emojis)
+        print(emojis.count)
+        print(indexPath.item)
+        let emoji = emojis[indexPath.item]
+        if emoji != nil {
+            EmojiDelegate.EmojiTapped(EmojiName: emoji)
+        }
     }
     
     
