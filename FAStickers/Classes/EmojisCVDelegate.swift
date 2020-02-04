@@ -14,10 +14,14 @@ class EmojisCVDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDe
     
     
     let emojiRanges = [
-        0x1F601...0x1F64F,
-        0x1F30D...0x1F567,
-        0x1F680...0x1F6C0,
-        0x1F681...0x1F6C5
+        0x1F600...0x1F64F, // Emoticons
+        0x1F300...0x1F5FF, // Misc Symbols and Pictographs
+        0x1F680...0x1F6FF, // Transport and Map
+        0x2600...0x26FF,   // Misc symbols
+        0x2700...0x27BF,   // Dingbats
+        0xFE00...0xFE0F,   // Variation Selectors
+        0x1F900...0x1F9FF, // Supplemental Symbols and Pictographs
+        0x1F1E6...0x1F1FF
     ]
 
     var emojis: [String] = []
@@ -27,8 +31,16 @@ class EmojisCVDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDe
         
         for range in emojiRanges {
             for i in range {
-                let c = String(describing: UnicodeScalar(i)!)
-                emojis.append(c)
+                
+                guard let scalarValue = Unicode.Scalar(i) else {
+                    continue
+                }
+                
+                if scalarValue.properties.isEmoji {
+                    //emoji.insert(scalarValue)
+                    let c = String(describing: UnicodeScalar(i)!)
+                    emojis.append(c)
+                }
             }
         }
     }

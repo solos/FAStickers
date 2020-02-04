@@ -120,7 +120,8 @@ public class StickerViewController: UIViewController, UIGestureRecognizerDelegat
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 100, right: 10)
         let width = (CGFloat) ((screenSize.width - 30) / 10.0)
-        let itemSize = CGSize(width: width, height: width)
+        //let itemSize = CGSize(width: width, height: width)
+        let itemSize = CGSize(width: 35, height: 35)
         layout.itemSize = CGSize(width: width, height: width)
         
         stickerCollectioView = UICollectionView(frame: frame, collectionViewLayout: layout)
